@@ -12,7 +12,7 @@
       --card-soft: #222326;
       --text: #f5f5f5;
       --muted: #c2c2c2;
-      --accent: #f6c453;
+      --accent: #fdb919;
       --border: rgba(255, 255, 255, 0.08);
       --hero-bg: rgba(255, 255, 255, 0.06);
       --surface: rgba(0, 0, 0, 0.35);
@@ -47,6 +47,83 @@
       display: flex;
       justify-content: center;
       padding: 32px 16px 60px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -20% -10%;
+      z-index: -1;
+      background:
+        radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.9) 0, rgba(255, 255, 255, 0) 60%),
+        radial-gradient(2px 2px at 80% 20%, rgba(255, 255, 255, 0.8) 0, rgba(255, 255, 255, 0) 60%),
+        radial-gradient(1.5px 1.5px at 60% 70%, rgba(255, 255, 255, 0.6) 0, rgba(255, 255, 255, 0) 60%),
+        radial-gradient(2px 2px at 35% 80%, rgba(255, 255, 255, 0.7) 0, rgba(255, 255, 255, 0) 60%),
+        radial-gradient(120px 120px at 15% 25%, rgba(253, 185, 25, 0.16) 0, rgba(253, 185, 25, 0) 70%),
+        radial-gradient(160px 160px at 85% 75%, rgba(120, 200, 255, 0.18) 0, rgba(120, 200, 255, 0) 70%);
+      animation: star-float 18s ease-in-out infinite;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    body::after {
+      animation-duration: 26s;
+      animation-delay: -6s;
+      opacity: 0.5;
+      filter: blur(0.5px);
+    }
+
+    @keyframes star-float {
+      0% {
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        transform: translateY(-2%) scale(1.02);
+      }
+      100% {
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: var(--bg);
+      color: var(--text);
+      z-index: 999;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .loader.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader__card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px 24px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+      display: grid;
+      gap: 8px;
+      text-align: center;
+      width: min(320px, 90%);
+    }
+
+    .loader__title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .loader__subtitle {
+      color: var(--muted);
+      font-size: 14px;
     }
 
     .page {
@@ -113,7 +190,7 @@
     }
 
     .steps strong {
-      color: #ffffff;
+      color: var(--text);
     }
 
     .callouts {
@@ -259,6 +336,12 @@
   </style>
 </head>
 <body>
+  <div class="loader" id="loader" aria-live="polite">
+    <div class="loader__card">
+      <div class="loader__title">Загрузка мини‑приложения…</div>
+      <div class="loader__subtitle">Пожалуйста, подождите пару секунд.</div>
+    </div>
+  </div>
   <main class="page">
     <header class="hero">
       <div class="hero__icon" aria-hidden="true">
@@ -280,12 +363,12 @@
         <li>Откройте <strong>Настройки</strong> в Telegram.</li>
         <li>Перейдите в раздел <strong>Telegram для бизнеса</strong>.</li>
         <li>Выберите <strong>Чат-боты</strong> и введите <strong>DelixorBot</strong>.</li>
-        <li>Нажмите <strong>Добавить</strong>, чтобы подключить бота.</li>
+        <li>Нажмите <strong>Добавить</strong> для подключения</li>
         <li>В разрешениях отметьте все пункты раздела <strong>Сообщения</strong>.</li>
       </ol>
       <div class="callouts">
         <div class="callout">
-          <span class="callout__icon">⚡</span>
+          <span class="callout__icon">💫</span>
           <div>
             <p class="callout__title">Проверьте разрешения</p>
             <p>Включите все пункты раздела «Сообщения» (5 из 5).</p>
@@ -303,28 +386,28 @@
 
     <section class="accordion">
       <button class="accordion__button" type="button" data-target="screenshots">
-        <span>🖼️ Показать скриншоты</span>
+        <span>📙 Показать скриншоты</span>
         <span class="accordion__chevron" aria-hidden="true">▾</span>
       </button>
       <div class="accordion__content" id="screenshots">
         <div class="media-grid">
           <figure>
             <img alt="Скриншот шага 1" src="https://storage.yandexcloud.net/fotora.ru/90da9397b1ab24af.jpeg" />
-            <figcaption>Открываем настройки и раздел Telegram для бизнеса.</figcaption>
+            <figcaption>Шаг 1. Открываем настройки и раздел Telegram для бизнеса.</figcaption>
           </figure>
           <figure>
             <img alt="Скриншот разрешений" src="https://storage.yandexcloud.net/fotora.ru/70db23a1bb5e2fea.jpeg" />
-            <figcaption>Выбираем все пункты в «Сообщениях».</figcaption>
+            <figcaption>Шаг 2. Выберите раздел «Чат-боты».</figcaption>
           </figure>
           <figure>
             <img alt="Скриншот завершения" src="https://storage.yandexcloud.net/fotora.ru/58ce88e582faa8ca.jpeg" />
-            <figcaption>Подключение завершено — можно возвращаться.</figcaption>
+            <figcaption>Шаг 3. Введите в поле DelixorBot и нажмите «Добавить».</figcaption>
           </figure>
         </div>
       </div>
 
       <button class="accordion__button" type="button" data-target="video">
-        <span>🎬 Показать видео</span>
+        <span>🛠 Показать видео</span>
         <span class="accordion__chevron" aria-hidden="true">▾</span>
       </button>
       <div class="accordion__content" id="video">
@@ -333,13 +416,20 @@
             <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
             Ваш браузер не поддерживает видео. Скачайте файл по ссылке выше.
           </video>
-          <p class="video-note">Короткое видео-инструкция: показываем весь путь подключения.</p>
+          <p class="video-note">Посмотрите видео-инструкцию по подключению DelixorBot.</p>
         </div>
       </div>
     </section>
   </main>
 
   <script>
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loader");
+      if (loader) {
+        loader.classList.add("is-hidden");
+      }
+    });
+
     const buttons = document.querySelectorAll(".accordion__button");
 
     const toggleSection = (button) => {
@@ -371,4 +461,3 @@
   </script>
 </body>
 </html>
-
