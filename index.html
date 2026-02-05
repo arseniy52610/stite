@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Бета-тест</title>
+  <title>Инструкция подключения Ravexon</title>
   <style>
     :root {
       color-scheme: dark;
@@ -37,7 +37,6 @@
       display: flex;
       flex-direction: column;
       gap: 24px;
-      flex: 1;
     }
 
     .hero {
@@ -75,23 +74,150 @@
       font-size: 15px;
     }
 
-    .beta {
-      flex: 1;
-      display: grid;
-      place-items: center;
-      text-align: center;
+    .card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
     }
 
-    .beta__title {
-      font-size: clamp(40px, 8vw, 72px);
-      font-weight: 700;
-      letter-spacing: 0.04em;
+    .card h2 {
+      margin-bottom: 16px;
+      font-size: 20px;
+    }
+
+    .steps {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-left: 18px;
+      color: var(--text);
+    }
+
+    .steps strong {
+      color: #ffffff;
+    }
+
+    .callouts {
+      display: grid;
+      gap: 12px;
+    }
+
+    .callout {
+      display: flex;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(246, 196, 83, 0.08);
+      border-left: 4px solid var(--accent);
+    }
+
+    .callout__icon {
+      font-size: 20px;
+    }
+
+    .callout__title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .accordion {
+      display: grid;
+      gap: 12px;
+    }
+
+    .accordion__button {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 16px 18px;
+      border-radius: 16px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .accordion__button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .accordion__button.is-open .accordion__chevron {
+      transform: rotate(180deg);
+    }
+
+    .accordion__chevron {
+      transition: transform 0.2s ease;
+    }
+
+    .accordion__content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: var(--card-soft);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .accordion__content.is-open {
+      padding: 18px;
+    }
+
+    .media-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .media-grid figure {
+      display: grid;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .media-grid img {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .media-grid figcaption {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .video-wrapper {
+      display: grid;
+      gap: 12px;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #000;
+    }
+
+    .video-note {
+      color: var(--muted);
+      font-size: 14px;
     }
 
     @media (max-width: 480px) {
       .hero {
         flex-direction: column;
         align-items: flex-start;
+      }
+
+      .card,
+      .accordion__button {
+        border-radius: 14px;
       }
     }
   </style>
@@ -106,16 +232,106 @@
         </svg>
       </div>
       <div>
-        <p class="hero__eyebrow">Статус</p>
-        <h1>Мини-приложение</h1>
-        <p class="hero__subtitle">Страница для режима бета-теста.</p>
+        <p class="hero__eyebrow">Инструкция по подключению</p>
+        <h1>Подключение Delixor</h1>
+        <p class="hero__subtitle">Следуйте шагам ниже — это займет не больше пары минут.</p>
       </div>
     </header>
 
-    <section class="beta" aria-label="Бета-тест">
-      <h2 class="beta__title">Бета-тест</h2>
+    <section class="card">
+      <h2>Что нужно сделать</h2>
+      <ol class="steps">
+        <li>Откройте <strong>Настройки</strong> в Telegram.</li>
+        <li>Перейдите в раздел <strong>Telegram для бизнеса</strong>.</li>
+        <li>Выберите <strong>Чат-боты</strong> и введите <strong>DelixorBot</strong>.</li>
+        <li>Нажмите <strong>Добавить</strong>, чтобы подключить бота.</li>
+        <li>В разрешениях отметьте все пункты раздела <strong>Сообщения</strong>.</li>
+      </ol>
+      <div class="callouts">
+        <div class="callout">
+          <span class="callout__icon">⚡</span>
+          <div>
+            <p class="callout__title">Проверьте разрешения</p>
+            <p>Включите все пункты раздела «Сообщения» (5 из 5).</p>
+          </div>
+        </div>
+        <div class="callout">
+          <span class="callout__icon">💎</span>
+          <div>
+            <p class="callout__title">Нужен Telegram Premium</p>
+            <p>Подключение доступно только с активной подпиской.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="accordion">
+      <button class="accordion__button" type="button" data-target="screenshots">
+        <span>🖼️ Показать скриншоты</span>
+        <span class="accordion__chevron" aria-hidden="true">▾</span>
+      </button>
+      <div class="accordion__content" id="screenshots">
+        <div class="media-grid">
+          <figure>
+            <img alt="Скоро добавим" src="data:image/svg+xml;utf8,<svg xmlns='#' width='640' height='360' viewBox='0 0 640 360'><defs><linearGradient id='bg1' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%231f1f1f'/><stop offset='100%25' stop-color='%232d2d2d'/></linearGradient></defs><rect width='640' height='360' rx='24' fill='url(%23bg1)'/><rect x='32' y='32' width='576' height='80' rx='16' fill='%232b2b2b'/><rect x='32' y='136' width='576' height='56' rx='14' fill='%23262626'/><rect x='32' y='212' width='576' height='56' rx='14' fill='%23262626'/><rect x='32' y='288' width='300' height='40' rx='12' fill='%23343434'/><text x='64' y='82' fill='%23F5F5F5' font-family='Arial, sans-serif' font-size='24' font-weight='700'>Шаг 1: Откройте настройки</text><text x='64' y='171' fill='%23CFCFCF' font-family='Arial, sans-serif' font-size='18'>Раздел Telegram для бизнеса</text><text x='64' y='247' fill='%23CFCFCF' font-family='Arial, sans-serif' font-size='18'>Чат-боты → Ravexon_bot</text><text x='64' y='316' fill='%23F6C453' font-family='Arial, sans-serif' font-size='16'>Скриншот интерфейса</text></svg>" />
+            <figcaption>недоступно</figcaption>
+          </figure>
+          <figure>
+            <img alt="Скоро добавим" src="data:image/svg+xml;utf8,<svg xmlns='#' width='640' height='360' viewBox='0 0 640 360'><defs><linearGradient id='bg2' x1='1' y1='0' x2='0' y2='1'><stop offset='0%25' stop-color='%231d1d1d'/><stop offset='100%25' stop-color='%232a2a2a'/></linearGradient></defs><rect width='640' height='360' rx='24' fill='url(%23bg2)'/><rect x='32' y='36' width='280' height='160' rx='18' fill='%232b2b2b'/><rect x='328' y='36' width='280' height='160' rx='18' fill='%232b2b2b'/><rect x='32' y='216' width='576' height='96' rx='16' fill='%23262626'/><text x='56' y='94' fill='%23F5F5F5' font-family='Arial, sans-serif' font-size='20' font-weight='700'>Разрешения</text><text x='352' y='94' fill='%23F5F5F5' font-family='Arial, sans-serif' font-size='20' font-weight='700'>Сообщения</text><text x='56' y='264' fill='%23CFCFCF' font-family='Arial, sans-serif' font-size='18'>Выберите все пункты и подтвердите доступ</text><text x='56' y='302' fill='%23F6C453' font-family='Arial, sans-serif' font-size='16'>Скриншот шага 4</text></svg>" />
+            <figcaption>недоступно</figcaption>
+          </figure>
+          <figure>
+            <img alt="Скоро добавим" src="data:image/svg+xml;utf8,<svg xmlns='#' width='640' height='360' viewBox='0 0 640 360'><defs><linearGradient id='bg3' x1='0' y1='1' x2='1' y2='0'><stop offset='0%25' stop-color='%23202020'/><stop offset='100%25' stop-color='%232f2f2f'/></linearGradient></defs><rect width='640' height='360' rx='24' fill='url(%23bg3)'/><rect x='32' y='40' width='576' height='64' rx='16' fill='%232b2b2b'/><rect x='32' y='120' width='576' height='160' rx='20' fill='%23262626'/><rect x='32' y='296' width='220' height='40' rx='12' fill='%23343434'/><text x='56' y='82' fill='%23F5F5F5' font-family='Arial, sans-serif' font-size='20' font-weight='700'>Готово!</text><text x='56' y='168' fill='%23CFCFCF' font-family='Arial, sans-serif' font-size='18'>Подключение завершено, теперь бот активен.</text><text x='56' y='206' fill='%23CFCFCF' font-family='Arial, sans-serif' font-size='18'>Можно возвращаться в мини-приложение.</text><text x='56' y='324' fill='%23F6C453' font-family='Arial, sans-serif' font-size='16'>Скриншот результата</text></svg>" />
+            <figcaption>недоступно</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <button class="accordion__button" type="button" data-target="video">
+        <span>🎬 Показать видео</span>
+        <span class="accordion__chevron" aria-hidden="true">▾</span>
+      </button>
+      <div class="accordion__content" id="video">
+        <div class="video-wrapper">
+          <video controls preload="metadata" poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='640' height='360' viewBox='0 0 640 360'><defs><linearGradient id='poster' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%231f1f1f'/><stop offset='100%25' stop-color='%232d2d2d'/></linearGradient></defs><rect width='640' height='360' rx='24' fill='url(%23poster)'/><text x='64' y='190' fill='%23F5F5F5' font-family='Arial, sans-serif' font-size='24' font-weight='700'>Видео скоро будет доступно</text></svg>">
+            <source src="#" type="video/mp4" />
+            Ваш браузер не поддерживает видео. Скачайте файл по ссылке выше.
+          </video>
+          <p class="video-note">Короткое видео-инструкция: показываем весь путь подключения.</p>
+        </div>
+      </div>
     </section>
   </main>
+
+  <script>
+    const buttons = document.querySelectorAll(".accordion__button");
+
+    const toggleSection = (button) => {
+      const targetId = button.getAttribute("data-target");
+      const content = document.getElementById(targetId);
+      const isOpen = content.classList.contains("is-open");
+
+      if (isOpen) {
+        content.style.maxHeight = "0px";
+        content.classList.remove("is-open");
+        button.classList.remove("is-open");
+        return;
+      }
+
+      content.classList.add("is-open");
+      button.classList.add("is-open");
+      content.style.maxHeight = `${content.scrollHeight + 32}px`;
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => toggleSection(button));
+    });
+
+    window.addEventListener("resize", () => {
+      document.querySelectorAll(".accordion__content.is-open").forEach((content) => {
+        content.style.maxHeight = `${content.scrollHeight + 32}px`;
+      });
+    });
+  </script>
 </body>
-</html>
 </html>
