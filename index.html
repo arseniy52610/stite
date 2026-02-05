@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Инструкция подключения DelixorBot</title>
+  <title>Инструкция подключения Ravexon</title>
   <style>
     :root {
       color-scheme: dark;
@@ -14,6 +14,23 @@
       --muted: #c2c2c2;
       --accent: #f6c453;
       --border: rgba(255, 255, 255, 0.08);
+      --hero-bg: rgba(255, 255, 255, 0.06);
+      --surface: rgba(0, 0, 0, 0.35);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        color-scheme: light;
+        --bg: #f6f6f7;
+        --card: #ffffff;
+        --card-soft: #f0f0f3;
+        --text: #1b1b1f;
+        --muted: #5a5a66;
+        --accent: #f2b441;
+        --border: rgba(0, 0, 0, 0.08);
+        --hero-bg: rgba(0, 0, 0, 0.04);
+        --surface: rgba(0, 0, 0, 0.05);
+      }
     }
 
     * {
@@ -50,7 +67,7 @@
       width: 52px;
       height: 52px;
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.06);
+      background: var(--hero-bg);
       display: grid;
       place-items: center;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
@@ -176,7 +193,7 @@
     .media-grid figure {
       display: grid;
       gap: 10px;
-      background: rgba(0, 0, 0, 0.35);
+      background: var(--surface);
       padding: 14px;
       border-radius: 14px;
       border: 1px solid rgba(255, 255, 255, 0.06);
@@ -202,6 +219,25 @@
       border-radius: 16px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       background: #000;
+    }
+
+    @media (prefers-color-scheme: light) {
+      body {
+        background: radial-gradient(circle at top, #ffffff 0%, #e9e9ef 55%);
+      }
+
+      .card {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(245, 245, 248, 0.9));
+        box-shadow: 0 18px 40px rgba(15, 15, 20, 0.08);
+      }
+
+      .accordion__button {
+        background: var(--card);
+      }
+
+      .video-wrapper video {
+        background: #e6e6ea;
+      }
     }
 
     .video-note {
@@ -233,7 +269,7 @@
       </div>
       <div>
         <p class="hero__eyebrow">Инструкция по подключению</p>
-        <h1>Подключение Delixor</h1>
+        <h1>Подключение Ravexon</h1>
         <p class="hero__subtitle">Следуйте шагам ниже — это займет не больше пары минут.</p>
       </div>
     </header>
@@ -243,7 +279,7 @@
       <ol class="steps">
         <li>Откройте <strong>Настройки</strong> в Telegram.</li>
         <li>Перейдите в раздел <strong>Telegram для бизнеса</strong>.</li>
-        <li>Выберите <strong>Чат-боты</strong> и введите <strong>DelixorBot</strong>.</li>
+        <li>Выберите <strong>Чат-боты</strong> и введите <strong>Ravexon_bot</strong>.</li>
         <li>Нажмите <strong>Добавить</strong>, чтобы подключить бота.</li>
         <li>В разрешениях отметьте все пункты раздела <strong>Сообщения</strong>.</li>
       </ol>
@@ -278,11 +314,11 @@
           </figure>
           <figure>
             <img alt="Скриншот разрешений" src="https://storage.yandexcloud.net/fotora.ru/70db23a1bb5e2fea.jpeg" />
-            <figcaption>Выбираем раздел «Чат-боты».</figcaption>
+            <figcaption>Выбираем все пункты в «Сообщениях».</figcaption>
           </figure>
           <figure>
             <img alt="Скриншот завершения" src="https://storage.yandexcloud.net/fotora.ru/58ce88e582faa8ca.jpeg" />
-            <figcaption>Вписываем в строку поиска DelixorBot и нажимаем кнопку «Добавить»</figcaption>
+            <figcaption>Подключение завершено — можно возвращаться.</figcaption>
           </figure>
         </div>
       </div>
