@@ -246,16 +246,19 @@
     }
 
     .accordion__chevron {
-      transition: transform 0.2s ease;
+      transition: transform 0.25s ease;
     }
 
     .accordion__content {
       max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
+      overflow: clip;
+      transition: max-height 0.52s cubic-bezier(0.22, 1, 0.36, 1), padding 0.32s ease;
       background: var(--card-soft);
       border-radius: 16px;
       border: 1px solid var(--border);
+      will-change: max-height;
+      transform: translateZ(0);
+      padding: 0 18px;
     }
 
     .accordion__content.is-open {
@@ -432,21 +435,31 @@
 
     const buttons = document.querySelectorAll(".accordion__button");
 
+    const setOpenHeight = (content) => {
+      content.style.maxHeight = `${content.scrollHeight}px`;
+    };
+
     const toggleSection = (button) => {
       const targetId = button.getAttribute("data-target");
       const content = document.getElementById(targetId);
       const isOpen = content.classList.contains("is-open");
 
       if (isOpen) {
-        content.style.maxHeight = "0px";
-        content.classList.remove("is-open");
-        button.classList.remove("is-open");
+        content.style.maxHeight = `${content.scrollHeight}px`;
+        requestAnimationFrame(() => {
+          content.style.maxHeight = "0px";
+          content.classList.remove("is-open");
+          button.classList.remove("is-open");
+        });
         return;
       }
 
       content.classList.add("is-open");
       button.classList.add("is-open");
-      content.style.maxHeight = `${content.scrollHeight + 32}px`;
+      content.style.maxHeight = "0px";
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => setOpenHeight(content));
+      });
     };
 
     buttons.forEach((button) => {
@@ -455,7 +468,7 @@
 
     window.addEventListener("resize", () => {
       document.querySelectorAll(".accordion__content.is-open").forEach((content) => {
-        content.style.maxHeight = `${content.scrollHeight + 32}px`;
+        setOpenHeight(content);
       });
     });
   </script>
