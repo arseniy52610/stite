@@ -250,19 +250,44 @@
     }
 
     .accordion__content {
-      max-height: 0;
-      overflow: clip;
-      transition: max-height 0.52s cubic-bezier(0.22, 1, 0.36, 1), padding 0.32s ease;
+      display: grid;
+      grid-template-rows: 0fr;
+      overflow: hidden;
+      transition: grid-template-rows 0.42s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.24s ease;
+      opacity: 0.72;
       background: var(--card-soft);
       border-radius: 16px;
       border: 1px solid var(--border);
-      will-change: max-height;
+      will-change: grid-template-rows;
       transform: translateZ(0);
-      padding: 0 18px;
     }
 
     .accordion__content.is-open {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+
+    .accordion__inner {
+      overflow: hidden;
+      min-height: 0;
+      padding: 0 18px;
+      transform: translateY(-6px);
+      opacity: 0;
+      transition: transform 0.32s ease, opacity 0.28s ease, padding 0.22s ease;
+    }
+
+    .accordion__content.is-open .accordion__inner {
       padding: 18px;
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .accordion__content,
+      .accordion__inner,
+      .accordion__chevron {
+        transition-duration: 0.01ms !important;
+      }
     }
 
     .media-grid {
@@ -354,7 +379,7 @@
         </svg>
       </div>
       <div>
-        <p class="hero__eyebrow"><p>Version 3.1/p>
+        <p class="hero__eyebrow">Beta v3.1</p>
         <h1>Подключение Delixor</h1>
         <p class="hero__subtitle">Следуйте шагам ниже — это займет не больше пары минут.</p>
       </div>
@@ -393,19 +418,21 @@
         <span class="accordion__chevron" aria-hidden="true">▾</span>
       </button>
       <div class="accordion__content" id="screenshots">
-        <div class="media-grid">
-          <figure>
-            <img alt="Скриншот шага 1" src="https://storage.yandexcloud.net/fotora.ru/90da9397b1ab24af.jpeg" />
-            <figcaption>Шаг 1. Открываем настройки и раздел Telegram для бизнеса.</figcaption>
-          </figure>
-          <figure>
-            <img alt="Скриншот разрешений" src="https://storage.yandexcloud.net/fotora.ru/70db23a1bb5e2fea.jpeg" />
-            <figcaption>Шаг 2. Выберите раздел «Чат-боты».</figcaption>
-          </figure>
-          <figure>
-            <img alt="Скриншот завершения" src="https://storage.yandexcloud.net/fotora.ru/58ce88e582faa8ca.jpeg" />
-            <figcaption>Шаг 3. Введите в поле DelixorBot и нажмите «Добавить».</figcaption>
-          </figure>
+        <div class="accordion__inner">
+          <div class="media-grid">
+            <figure>
+              <img alt="Скриншот шага 1" src="https://storage.yandexcloud.net/fotora.ru/90da9397b1ab24af.jpeg" />
+              <figcaption>Шаг 1. Открываем настройки и раздел Telegram для бизнеса.</figcaption>
+            </figure>
+            <figure>
+              <img alt="Скриншот разрешений" src="https://storage.yandexcloud.net/fotora.ru/70db23a1bb5e2fea.jpeg" />
+              <figcaption>Шаг 2. Выберите раздел «Чат-боты».</figcaption>
+            </figure>
+            <figure>
+              <img alt="Скриншот завершения" src="https://storage.yandexcloud.net/fotora.ru/58ce88e582faa8ca.jpeg" />
+              <figcaption>Шаг 3. Введите в поле DelixorBot и нажмите «Добавить».</figcaption>
+            </figure>
+          </div>
         </div>
       </div>
 
@@ -414,12 +441,14 @@
         <span class="accordion__chevron" aria-hidden="true">▾</span>
       </button>
       <div class="accordion__content" id="video">
-        <div class="video-wrapper">
-          <video controls preload="metadata" poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='640' height='360' viewBox='0 0 640 360'><defs><linearGradient id='poster' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%231f1f1f'/><stop offset='100%25' stop-color='%232d2d2d'/></linearGradient></defs><rect width='640' height='360' rx='24' fill='url(%23poster)'/><text x='64' y='190' fill='%23F5F5F5' font-family='Arial, sans-serif' font-size='24' font-weight='700'>Видео-инструкция</text></svg>">
-            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
-            Ваш браузер не поддерживает видео. Скачайте файл по ссылке выше.
-          </video>
-          <p class="video-note">Посмотрите видео-инструкцию по подключению DelixorBot.</p>
+        <div class="accordion__inner">
+          <div class="video-wrapper">
+            <video controls preload="metadata" poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='640' height='360' viewBox='0 0 640 360'><defs><linearGradient id='poster' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%231f1f1f'/><stop offset='100%25' stop-color='%232d2d2d'/></linearGradient></defs><rect width='640' height='360' rx='24' fill='url(%23poster)'/><text x='64' y='190' fill='%23F5F5F5' font-family='Arial, sans-serif' font-size='24' font-weight='700'>Видео-инструкция</text></svg>">
+              <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+              Ваш браузер не поддерживает видео. Скачайте файл по ссылке выше.
+            </video>
+            <p class="video-note">Посмотрите видео-инструкцию по подключению DelixorBot.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -435,43 +464,25 @@
 
     const buttons = document.querySelectorAll(".accordion__button");
 
-    const setOpenHeight = (content) => {
-      content.style.maxHeight = `${content.scrollHeight}px`;
-    };
-
     const toggleSection = (button) => {
       const targetId = button.getAttribute("data-target");
       const content = document.getElementById(targetId);
       const isOpen = content.classList.contains("is-open");
 
       if (isOpen) {
-        content.style.maxHeight = `${content.scrollHeight}px`;
-        requestAnimationFrame(() => {
-          content.style.maxHeight = "0px";
-          content.classList.remove("is-open");
-          button.classList.remove("is-open");
-        });
+        content.classList.remove("is-open");
+        button.classList.remove("is-open");
         return;
       }
 
       content.classList.add("is-open");
       button.classList.add("is-open");
-      content.style.maxHeight = "0px";
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => setOpenHeight(content));
-      });
     };
 
     buttons.forEach((button) => {
       button.addEventListener("click", () => toggleSection(button));
     });
 
-    window.addEventListener("resize", () => {
-      document.querySelectorAll(".accordion__content.is-open").forEach((content) => {
-        setOpenHeight(content);
-      });
-    });
   </script>
 </body>
 </html>
-
